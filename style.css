@@ -1,0 +1,549 @@
+/* ================= GLOBAL ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: radial-gradient(circle at top, #1a1a1a, #000);
+  color: #eee;
+  line-height: 1.6;
+}
+
+/* ================= BANNER / HERO ================= */
+.banner {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  background: linear-gradient(135deg, #7a0000, #120012, #000);
+  color: gold;
+  overflow: hidden;
+}
+
+.banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("images/stadium.jpg") center/cover no-repeat;
+  opacity: 0.15;
+  z-index: 0;
+}
+
+.banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(255, 0, 0, 0.03) 6px,
+    transparent 6px,
+    transparent 14px
+  );
+  z-index: 0;
+}
+
+.banner * {
+  position: relative;
+  z-index: 1;
+}
+
+.banner .logo {
+  width: 140px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  box-shadow: 0 0 18px rgba(255, 215, 0, 0.6);
+  transition: transform 0.3s;
+}
+
+.banner .logo:hover {
+  transform: scale(1.08);
+}
+
+.banner h1 {
+  color: white;
+  font-size: clamp(36px, 5vw, 52px);
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  text-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
+  animation: flare 2.5s infinite;
+}
+
+.banner p {
+  font-size: 18px;
+  max-width: 600px;
+  color: #f1f1f1;
+  opacity: 0.9;
+}
+
+@keyframes flare {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(6px);
+  padding: 14px 24px;
+
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+}
+
+/* LEFT LOGO */
+.nav-logo {
+  color: gold;
+  font-size: 18px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+/* CENTER LINKS – EQUAL DISTANCE */
+.nav-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px; /* 🔥 reduce/increase this value */
+}
+
+
+.nav-links a {
+  color: #ddd;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  position: relative;
+  padding: 6px 0;
+}
+
+/* HOVER EFFECT */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: gold;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-links a:hover {
+  color: gold;
+}
+
+/* RIGHT MENU ICON */
+.menu-icon {
+  font-size: 24px;
+  color: gold;
+  cursor: pointer;
+  user-select: none;
+}
+
+
+/* ================= SECTIONS ================= */
+section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+/* ================= PLAYERS ================= */
+#players {
+  background: linear-gradient(135deg, #000, #1a0033, #7a0000);
+}
+
+.players-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
+  margin-top: 30px;
+}
+
+.card {
+  background: linear-gradient(145deg, #140000, #000);
+  border: 1px solid yellow;
+  border-radius: 16px;
+  padding: 15px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 18px rgba(255, 255, 0, 0.6);
+}
+
+.card img {
+  width: 100%;
+  height: 290px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid #7a0000;
+}
+
+.card h3 {
+  margin-top: 12px;
+  color: gold;
+}
+
+.card p {
+  color: #ddd;
+}
+
+/* ================= SCHEDULE ================= */
+.schedule-section {
+  background: linear-gradient(135deg, #000, #1a0033, #7a0000);
+}
+
+.schedule-table {
+  margin: auto;
+  width: 80%;
+  border-collapse: collapse;
+  background: #111;
+}
+
+.schedule-table th,
+.schedule-table td {
+  padding: 12px;
+  border: 1px solid;
+}
+
+.schedule-table th {
+  background: #7a0000;
+  color: gold;
+}
+
+.schedule-table tr:hover {
+  background: #220000;
+}
+
+/* ================= STATS ================= */
+.stats-section {
+  background: radial-gradient(circle at top, #2b0000, #000);
+}
+
+.stats-list {
+  max-width: 700px;
+  margin: 30px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 22px;
+  background: linear-gradient(to right, #111, #1c0000);
+  border-left: 5px solid gold;
+  border-radius: 10px;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.stat-row:hover {
+  transform: translateX(8px);
+  box-shadow: 0 0 18px rgba(255, 215, 0, 0.5);
+}
+
+.stat-title {
+  color: #ddd;
+}
+
+.stat-value {
+  color: gold;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* ================= NEWS ================= */
+.news-section {
+  background: linear-gradient(135deg, #000, #1a0033, #7a0000);
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  margin-top: 35px;
+}
+
+.news-card {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid #7a0000;
+  border-radius: 16px;
+  padding: 22px;
+  text-align: left;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.news-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+}
+
+.news-tag {
+  background: gold;
+  color: #000;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+/* ================= FAN POLL ================= */
+.fan-poll-section {
+  background: linear-gradient(135deg, #000, #1a0033, #7a0000);
+}
+
+.poll-box {
+  max-width: 420px;
+  margin: auto;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 18px;
+  border: 1px solid #7a0000;
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
+}
+
+.poll-box select {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  background: #111;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.poll-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(to right, #7a0000, gold);
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.poll-btn:hover {
+  transform: scale(1.05);
+}
+
+
+/* Jersey Showcase Section */
+.jersey-showcase {
+  background: linear-gradient(135deg, #000, #1a0033, #a70000);
+  padding: 60px 20px;
+}
+
+.jersey-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+/* Side Images */
+.jersey-side img {
+  width: 260px;
+  max-width: 100%;
+  border-radius: 18px;
+  border: 2px solid gold;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+  transition: transform 0.4s;
+}
+
+.jersey-side img:hover {
+  transform: scale(1.05);
+}
+
+/* Center Jersey */
+.jersey-center {
+  text-align: center;
+}
+
+.jersey-center img {
+  width: 320px;
+  max-width: 100%;
+  border-radius: 20px;
+  border: 3px solid yellow;
+  box-shadow: 0 0 30px rgba(251, 255, 0, 0.7);
+  transition: transform 0.4s;
+}
+
+.jersey-center img:hover {
+  transform: scale(1.08);
+}
+
+.jersey-center p {
+  margin-top: 15px;
+  color: gold;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+
+/* Make jersey section more cinematic */
+.jersey-showcase {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Depth + spacing */
+.jersey-container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Side images slightly faded + behind */
+.jersey-side {
+  opacity: 0.85;
+}
+
+.jersey-side.left {
+  transform: translateX(-10px);
+}
+
+.jersey-side.right {
+  transform: translateX(10px);
+}
+
+/* HERO Jersey animation */
+.jersey-center img {
+  animation: floatJersey 4s ease-in-out infinite;
+}
+
+/* Glow ring behind jersey */
+.jersey-center::before {
+  content: "";
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(255,255,0,0.4), transparent 70%);
+  border-radius: 50%;
+  z-index: -1;
+  filter: blur(25px);
+}
+
+/* Floating animation */
+@keyframes floatJersey {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
+
+/* Better text styling */
+.jersey-center p {
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 10px rgba(255,215,0,0.6);
+}
+
+/* Responsive polish */
+@media (max-width: 900px) {
+  .jersey-container {
+    flex-direction: column;
+  }
+
+  .jersey-side img {
+    width: 220px;
+  }
+
+  .jersey-center img {
+    width: 300px;
+  }
+}
+/* ================= FOOTER ================= */
+/* Footer Styling */
+.footer {
+  background: linear-gradient(135deg, #000000, #1a0033, #a70000);
+  color: gold;
+  padding: 50px 20px 20px 20px;
+  font-family: Arial, sans-serif;
+  position: relative;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  gap: 30px;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-section h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: gold;
+  text-shadow: 0 0 5px #fff;
+}
+
+.footer-section p, 
+.footer-section li {
+  font-size: 14px;
+  color: #ddd;
+  line-height: 1.6;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+  color: #ddd;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+  color: gold;
+}
+
+
+.social-icons {
+  margin-top: 10px;
+}
+
+.social-icons a {
+  display: inline-block;
+  margin-right: 10px;
+  transition: transform 0.3s;
+}
+
+.social-icons a:hover {
+  transform: scale(1.2);
+}
+
+.social-icons img {
+  width: 25px;
+  height: 25px;
+}
